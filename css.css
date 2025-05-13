@@ -1,0 +1,28 @@
+body {
+    background-color: black;
+    overflow: hidden;
+    /* 🚫 Remove rolagem */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.anuncio {
+    margin-top: 20px;
+}
+
+#linkRedirecionar {
+    display: none;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+a {
+    color: #00ffcc;
+    text-decoration: underline;
+}

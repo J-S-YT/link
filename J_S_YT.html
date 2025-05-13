@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecionando...</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+    <h1>Redirecionando...</h1>
+    <div class="anuncio">
+        <!-- Start of ouo.io banner code -->
+        <a href="http://ouo.io/ref/Vk1GsFY7"><img src="r1.png"
+                title="ouo.io - Make short links and earn the biggest money" /></a>
+        <!-- End of ouo.io banner code -->
+    </div>
+
+    <div id="linkRedirecionar">
+        <p><a href="https://t.me/J_S_YT">Clique aqui se não for redirecionado automaticamente</a></p>
+    </div>
+
+    <script>
+        const destino = "https://t.me/J_S_YT"; // Altere para o link desejado
+
+        // Exibe o link manual depois de 5 segundos
+        setTimeout(() => {
+            document.getElementById('linkRedirecionar').style.display = 'block';
+        }, 5000);
+
+        // Redireciona automaticamente depois de 5 segundos
+        setTimeout(() => {
+            window.location.href = destino;
+        }, 5000);
+    </script>
+</body>
+
+</html>
