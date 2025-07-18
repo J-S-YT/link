@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Aleatório</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff9f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+        }
+        #output {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #000000;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .copy-button {
+            background-color: #28a745;
+        }
+        .copy-button:hover {
+            background-color: #218838;
+        }
+        #notification {
+            margin-top: 10px;
+            color: green;
+            font-size: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gerador Aleatório</h1>
+        <div id="output">Clique para gerar!</div>
+        <button onclick="gerarAleatorio()">Gerar</button>
+        <button class="copy-button" onclick="copiarTexto()">Copiar</button>
+        <div id="notification">Texto copiado!</div>
+    </div>
+
+    <script>
+        function gerarAleatorio() {
+            const caracteres = 'AEIJMNOSTUYaeijmnostuy0123456789';
+            const comprimento = 5;
+            let resultado = '';
+            for (let i = 0; i < comprimento; i++) {
+                const indice = Math.floor(Math.random() * caracteres.length);
+                resultado += caracteres.charAt(indice);
+            }
+            resultado += '.html';
+            document.getElementById('output').textContent = resultado;
+        }
+
+        function copiarTexto() {
+            const texto = document.getElementById('output').textContent;
+            const textarea = document.createElement('textarea');
+            textarea.value = texto;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Exibe a notificação de texto copiado
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000); // Oculta a notificação após 5 segundos
+        }
+    </script>
+
+</body>
+</html>
