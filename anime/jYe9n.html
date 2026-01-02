@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>JSY ANIME | Redirecionando</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            background: #111;
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 0 20px rgba(4, 0, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #ff4747;
+            text-shadow: 1px 1px 4px #000;
+        }
+
+        .msg {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #ccc;
+        }
+
+        .anuncio {
+            margin-bottom: 30px;
+            background: #1d1d1d;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.2);
+            color: #eee;
+            font-size: 1em;
+        }
+
+        .anuncio a {
+            color: #ff4747;
+            text-decoration: underline;
+        }
+
+        button {
+            background: linear-gradient(to right, #ff3c3c, #ff0000);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #ff0000, #cc0000);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Redirecionando</h1>
+        <p class="msg">Clique no botão abaixo para continuar</p>
+
+        <div id="anuncio" class="anuncio">
+            <!-- Anúncio aleatório aparece aqui -->
+        </div>
+
+        <button onclick="entrar()">Continuar no Anime</button>
+    </div>
+
+    <script>
+        const anuncios = [
+            `<a href="http://ouo.io/ref/Vk1GsFY7" target="_blank" rel="noopener noreferrer">
+        <img src="http://ouo.io/images/banners/r1.jpg" alt="ouo.io - Make short links and earn the biggest money" style="max-width:100%; border-radius:8px;" />
+      </a>`,
+            `<p>Faça sua doação para o site pelo Livepix:<br><a href="https://livepix.gg/josestatusyt" target="_blank" rel="noopener noreferrer">https://livepix.gg/josestatusyt</a></p>`,
+            `<p>Oi, tudo bem? Quer ganhar bônus incríveis? <br><a href="https://k.kwai.com/w/dYhxmUv9" target="_blank" rel="noopener noreferrer">Clique aqui para me ajudar!</a></p>`,
+            `<p>Receba recompensas diárias no TikTok.<br><a href="https://vm.tiktok.com/ZMStQeysT/" target="_blank" rel="noopener noreferrer">Veja aqui</a></p>`
+        ];
+
+        function mostrarAnuncio() {
+            const index = Math.floor(Math.random() * anuncios.length);
+            document.getElementById('anuncio').innerHTML = anuncios[index];
+        }
+
+        mostrarAnuncio();
+
+        function entrar() {
+            window.location.href = "https://j-s-an.github.io/anime/mf-ghost/tv-2/legendado/menu.html"; // Substitua pelo link real
+        }
+    </script>
+
+    <script>(function(s){s.dataset.zone='10283367',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+</body>
+
+</html>
