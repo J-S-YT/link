@@ -26,8 +26,6 @@ function entrarSeguro(token) {
     location.reload();
     return;
   }
-
-  window.location.href = "https://j-s-yt.github.io/link/";
 }
 
 const observer = new MutationObserver(() => {
