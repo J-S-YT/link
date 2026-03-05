@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+
+<title>JSY ANIME | Verificação</title>
+
+<link rel="stylesheet" href="anime.css">
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<p class="msg" id="textoCaptcha">
+Clique no CAPTCHA abaixo para continuar
+</p>
+
+<div id="anuncio" class="anuncio"></div>
+
+<div id="captcha-box" style="margin-bottom:20px;">
+<div class="cf-turnstile"
+data-sitekey="0x4AAAAAACMIO0hS8PwhSBuT"
+data-callback="captchaSucesso">
+</div>
+</div>
+
+</div>
+
+<script>
+
+const anuncios = [
+
+`<a href="http://ouo.io/ref/Vk1GsFY7" target="_blank">
+<img src="http://ouo.io/images/banners/r1.jpg" style="max-width:100%; border-radius:8px;">
+</a>`,
+
+`<p>Faça sua doação para o site pelo Livepix:<br>
+<a href="https://livepix.gg/josestatusyt" target="_blank">
+https://livepix.gg/josestatusyt
+</a></p>`,
+
+`<p>Quer ganhar bônus incríveis?<br>
+<a href="https://k.kwai.com/w/dYhxmUv9" target="_blank">
+Clique aqui para me ajudar
+</a></p>`,
+
+`<p>Receba recompensas diárias no TikTok.<br>
+<a href="https://vm.tiktok.com/ZMStQeysT/" target="_blank">
+Veja aqui
+</a></p>`
+
+];
+
+function mostrarAnuncio(){
+const index = Math.floor(Math.random() * anuncios.length);
+document.getElementById("anuncio").innerHTML = anuncios[index];
+}
+
+mostrarAnuncio();
+
+
+function captchaSucesso(){
+
+document.getElementById("textoCaptcha").innerText =
+"Verificação concluída! Redirecionando...";
+
+setTimeout(function(){
+
+window.location.href = "https://animesonlinecc.to/";
+
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
