@@ -1,101 +1,271 @@
 import os
-from tkinter import Tk, filedialog, messagebox
+import tkinter as tk
+from tkinter import filedialog, messagebox
 
-# Oculta a janela principal do Tkinter
 
-Tk().withdraw()
+# -----------------------------
+# Selecionar arquivos
+# -----------------------------
 
-# Selecionar arquivo TXT
+def selecionar_txt():
+    arquivo = filedialog.askopenfilename(
+        title="Selecionar TXT",
+        filetypes=[("Arquivo TXT", "*.txt")]
+    )
+    txt_var.set(arquivo)
 
-arquivo_txt = filedialog.askopenfilename(
-title="Selecione o arquivo TXT",
-filetypes=[("Arquivos TXT", "*.txt")]
+
+def selecionar_pasta():
+    pasta = filedialog.askdirectory(
+        title="Selecionar pasta de destino"
+    )
+    pasta_var.set(pasta)
+
+
+# -----------------------------
+# Gerar episódios
+# -----------------------------
+
+def gerar():
+
+    nome_anime = anime_var.get().strip()
+    capa = capa_var.get().strip()
+    arquivo_txt = txt_var.get()
+    pasta_destino = pasta_var.get()
+
+    if not nome_anime or not capa or not arquivo_txt or not pasta_destino:
+        messagebox.showerror(
+            "Erro",
+            "Preencha todos os campos!"
+        )
+        return
+
+
+        # Ler template
+
+    try:
+        pasta_programa = os.path.dirname(
+            os.path.abspath(__file__)
+        )
+
+        arquivo_template = os.path.join(
+            pasta_programa,
+            "template.html"
+        )
+
+        with open(
+            arquivo_template,
+            "r",
+            encoding="utf-8"
+        ) as f:
+            template = f.read()
+
+    except Exception as erro:
+        messagebox.showerror(
+            "Erro",
+            f"Não encontrei o arquivo template.html\n\n{erro}"
+        )
+        return
+
+
+    # Ler TXT
+
+    with open(arquivo_txt, "r", encoding="utf-8") as f:
+        linhas = [
+            linha.strip()
+            for linha in f
+            if linha.strip()
+        ]
+
+
+    videos = []
+
+    for i in range(0, len(linhas), 2):
+
+        if i + 1 < len(linhas):
+
+            nome = linhas[i]
+            link = linhas[i + 1]
+
+            videos.append(link)
+
+
+    total = len(videos)
+
+
+    # Criar arquivos
+
+    for numero, link in enumerate(videos, start=1):
+
+        html = template
+
+
+        anterior = (
+            f"episodio-{numero-1}.html"
+            if numero > 1
+            else "menu.html"
+        )
+
+
+        proximo = (
+            f"episodio-{numero+1}.html"
+            if numero < total
+            else "#"
+        )
+
+
+        html = html.replace(
+            "{{NOME_ANIME}}",
+            nome_anime
+        )
+
+        html = html.replace(
+            "{{CAPA_ANIME}}",
+            capa
+        )
+
+        html = html.replace(
+            "{{EPISODIO}}",
+            str(numero)
+        )
+
+        html = html.replace(
+            "{{BLOGGER}}",
+            link
+        )
+
+        html = html.replace(
+            "{{ANTERIOR}}",
+            anterior
+        )
+
+        html = html.replace(
+            "{{PROXIMO}}",
+            proximo
+        )
+
+
+        nome_arquivo = (
+            f"episodio-{numero}.html"
+        )
+
+
+        caminho = os.path.join(
+            pasta_destino,
+            nome_arquivo
+        )
+
+
+        with open(
+            caminho,
+            "w",
+            encoding="utf-8"
+        ) as f:
+            f.write(html)
+
+
+
+    messagebox.showinfo(
+        "Concluído",
+        f"{total} episódios criados!"
+    )
+
+
+
+# -----------------------------
+# Interface
+# -----------------------------
+
+janela = tk.Tk()
+
+janela.title(
+    "Gerador de Episódios JSY ANIME"
 )
 
-if not arquivo_txt:
-    print("Nenhum arquivo selecionado.")
-    exit()
-
-# Ler arquivo
-
-with open(arquivo_txt, "r", encoding="utf-8") as f:
-    linhas = [linha.strip() for linha in f if linha.strip()]
-
-videos = []
-
-for i in range(0, len(linhas), 2):
-    if i + 1 < len(linhas):
-        videos.append((linhas[i], linhas[i + 1]))
-
-nome_html = os.path.splitext(os.path.basename(arquivo_txt))[0] + ".html"
-PASTA_DESTINO = r"D:\GitHub\J-S-YT\link\blog"
-
-caminho_html = os.path.join(
-    PASTA_DESTINO,
-    nome_html
+janela.geometry(
+    "500x350"
 )
 
-html = f"""<!DOCTYPE html>
 
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{os.path.splitext(os.path.basename(arquivo_txt))[0]}</title>
+anime_var = tk.StringVar()
+capa_var = tk.StringVar()
+txt_var = tk.StringVar()
+pasta_var = tk.StringVar()
 
-<style>
-body {{
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}}
 
-h1 {{
-    margin-bottom: 20px;
-}}
+tk.Label(
+    janela,
+    text="Nome do Anime"
+).pack()
 
-.botao {{
-    display: block;
-    width: 320px;
-    margin: 10px auto;
-    padding: 15px;
-    background: #ff6600;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 18px;
-    transition: 0.2s;
-}}
+tk.Entry(
+    janela,
+    textvariable=anime_var,
+    width=60
+).pack()
 
-.botao:hover {{
-    transform: scale(1.03);
-}}
-</style>
 
-</head>
-<body>
 
-<h1>{os.path.splitext(os.path.basename(arquivo_txt))[0]}</h1>
-"""
+tk.Label(
+    janela,
+    text="Link da Capa"
+).pack()
 
-for nome, link in videos:
-    html += f'<a class="botao" href="{link}" target="_blank">{nome}</a>\n'
+tk.Entry(
+    janela,
+    textvariable=capa_var,
+    width=60
+).pack()
 
-html += """
 
-</body>
-</html>
-"""
 
-with open(caminho_html, "w", encoding="utf-8") as f:
-    f.write(html)
+tk.Label(
+    janela,
+    text="Arquivo TXT"
+).pack()
 
-messagebox.showinfo(
-"Concluído",
-f"Página criada com sucesso!\n\n{caminho_html}"
-)
+tk.Entry(
+    janela,
+    textvariable=txt_var,
+    width=45
+).pack()
 
-print("HTML criado:", caminho_html)
+tk.Button(
+    janela,
+    text="Selecionar TXT",
+    command=selecionar_txt
+).pack()
+
+
+
+tk.Label(
+    janela,
+    text="Pasta destino"
+).pack()
+
+tk.Entry(
+    janela,
+    textvariable=pasta_var,
+    width=45
+).pack()
+
+tk.Button(
+    janela,
+    text="Selecionar Pasta",
+    command=selecionar_pasta
+).pack()
+
+
+
+tk.Button(
+    janela,
+    text="GERAR EPISÓDIOS",
+    bg="orange",
+    fg="white",
+    font=("Arial",12),
+    command=gerar
+).pack(pady=20)
+
+
+
+janela.mainloop()
