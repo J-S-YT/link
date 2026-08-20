@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>JSY ANIME | Redirecionando</title>
+    <link rel="stylesheet" href="../anime.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="../anime.js" async defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <p class="msg">Clique no CAPTCHA abaixo para continuar</p>
+
+        <div id="anuncio" class="anuncio">
+            <!-- Anúncio aleatório aparece aqui -->
+        </div>
+
+        <!-- CAPTCHA -->
+        <div id="captcha-box" style="margin-bottom:20px;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACMIO0hS8PwhSBuT" data-callback="captchaSucesso">
+            </div>
+        </div>
+
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+        <!-- Botão escondido -->
+        <button id="btnContinuar" onclick="entrar()" style="display:none;">
+            Continuar no Anime
+        </button>
+    </div>
+
+    <script>
+        const anuncios = [
+            `<a href="http://ouo.io/ref/Vk1GsFY7" target="_blank" rel="noopener noreferrer">
+        <img src="http://ouo.io/images/banners/r1.jpg" alt="ouo.io - Make short links and earn the biggest money" style="max-width:100%; border-radius:8px;" />
+      </a>`,
+            `<p>Faça sua doação para o site pelo Livepix:<br><a href="https://livepix.gg/josestatusyt" target="_blank" rel="noopener noreferrer">https://livepix.gg/josestatusyt</a></p>`,
+            `<p>Oi, tudo bem? Quer ganhar bônus incríveis? <br><a href="https://k.kwai.com/w/dYhxmUv9" target="_blank" rel="noopener noreferrer">Clique aqui para me ajudar!</a></p>`,
+            `<p>Receba recompensas diárias no TikTok.<br><a href="https://vm.tiktok.com/ZMStQeysT/" target="_blank" rel="noopener noreferrer">Veja aqui</a></p>`
+        ];
+
+        function mostrarAnuncio() {
+            const index = Math.floor(Math.random() * anuncios.length);
+            document.getElementById('anuncio').innerHTML = anuncios[index];
+        }
+
+        mostrarAnuncio();
+
+        function entrar() {
+            window.location.href = "https://j-s-an.github.io/anime/86/tv-1/legendado/menu.html";
+        }
+        function captchaSucesso() {
+            document.getElementById("btnContinuar").style.display = "inline-block";
+        }
+    </script>
+
+</body>
+
+</html>
