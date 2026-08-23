@@ -103,14 +103,14 @@ def gerar():
         anterior = (
             f"episodio-{numero-1}.html"
             if numero > 1
-            else "menu.html"
+            else "#"
         )
 
 
         proximo = (
             f"episodio-{numero+1}.html"
             if numero < total
-            else "#"
+            else "#EM-BREVE"
         )
 
 

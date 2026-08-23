@@ -103,14 +103,14 @@ def gerar():
         anterior = (
             f"episodio-{numero-1}.html"
             if numero > 1
-            else "menu.html"
+            else "#"
         )
 
 
         proximo = (
             f"episodio-{numero+1}.html"
             if numero < total
-            else "#"
+            else "#EM-REBEVE"
         )
 
 
@@ -179,7 +179,7 @@ def gerar():
 janela = tk.Tk()
 
 janela.title(
-    "Gerador de Episódios JSY ANIME"
+    "Gerador de Episódios Dublado JSY ANIME"
 )
 
 janela.geometry(
